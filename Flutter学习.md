@@ -95,24 +95,24 @@ void whenTaskCompelete() {
 2. Flutter 中支持 async/await
 ```
 void main(){
-
   renderSome();
   print("测试...");
 }
-///模拟等待两秒，返回OK
+
+///1.模拟等待两秒，返回OK
 request() async {
   await Future.delayed(Duration(seconds: 1));
   return "ok!";
 }
 
-///得到"ok!"后，将"ok!"修改为"ok from request"
+///2.得到"ok!"后，将"ok!"修改为"ok from request"
 doSomeThing() async {
   String data = await request();
   data = "ok from request";
   return data;
 }
 
-///打印结果
+///3.打印结果
 renderSome() {
   doSomeThing().then((value) {
     print(value);
