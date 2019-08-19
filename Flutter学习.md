@@ -17,6 +17,13 @@ int x() {
 }
 ```
 ## 2.Dart中构造函数
+
+.默认构造函数(Default constructors)
+如果类定义时，没有显式的定义构造函数，Dart 语言将提供默认的构造函数。默认的构造函数没有参数。
+
+.构造函数不能继承(Constructors aren’t inherited)
+Dart 语言中，子类不会继承父类的命名构造函数。如果不显式提供子类的构造函数，系统就提供默认的构造函数。
+
 ```
 class Point {
   num x;
