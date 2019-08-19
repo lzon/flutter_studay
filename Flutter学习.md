@@ -16,7 +16,7 @@ int x() {
   // 代码...
 }
 ```
-## 3.Dart中构造函数
+## 2.Dart中构造函数
 ```
 class Point {
   num x;
@@ -39,7 +39,7 @@ class Point {
   Point(this.x, this.y);
 }
 ```
-## 2.Dart可选参数的写法
+## 3.Dart可选参数的写法
 ```
 //不在中括号和大括号里面的是必须要填的
 void main() {
@@ -66,5 +66,57 @@ getPart2(var a, [String name, String pwd]) {
  */
 getDeful(String a, {String name="小明", String pwd="123"} ){
   print("a=$a name=$name pwd=$pwd");
+}
+```
+## 3.Flutter中异步
+1.Future:
+```
+void main() {
+  new Future(futureTask)
+      .then((m) => "futueTask execute result:$m") //   任务执行完后的子任务
+      .then((m) => m.length) //  其中m为上个任务执行完后的返回的结果
+      .then((m) => printLength(m))
+      .whenComplete(() => whenTaskCompelete()); //  当所有任务完成后的回调函数
+  print("会先执行，再执行上面的异步");
+}
+
+int futureTask() {
+  return 21;
+}
+
+void printLength(int length) {
+  print("Text Length:$length");
+}
+
+void whenTaskCompelete() {
+  print("Task Complete");
+}
+```
+2. Flutter 中支持 async/await
+```
+void main(){
+
+  renderSome();
+  print("测试...");
+}
+///模拟等待两秒，返回OK
+request() async {
+  await Future.delayed(Duration(seconds: 1));
+  return "ok!";
+}
+
+///得到"ok!"后，将"ok!"修改为"ok from request"
+doSomeThing() async {
+  String data = await request();
+  data = "ok from request";
+  return data;
+}
+
+///打印结果
+renderSome() {
+  doSomeThing().then((value) {
+    print(value);
+    ///输出ok from request
+  });
 }
 ```
