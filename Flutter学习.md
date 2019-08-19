@@ -140,6 +140,16 @@ class Child extends Parent {
   }
 }
 ```
+静态构造函数
+```
+class ImmutablePoint {
+    //如果你的类产生的对象永远不会改变，你可以让这些对象成为编译时常量。为此，需要定义一个 const 构造函数并确保所有的实例变量都是 final 的。
+    final num x;
+    final num y;
+    const ImmutablePoint(this.x, this.y);
+    static final ImmutablePoint origin = const ImmutablePoint(0, 0);
+}
+```
 ## 3.Dart可选参数的写法
 ```
 //不在中括号和大括号里面的是必须要填的
