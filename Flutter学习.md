@@ -16,7 +16,7 @@ int x() {
   // 代码...
 }
 ```
-## 2.Dart中构造函数
+## 3.Dart中构造函数
 ```
 class Point {
   num x;
