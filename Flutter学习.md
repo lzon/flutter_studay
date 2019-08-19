@@ -55,6 +55,34 @@ class Point {
 }
 
 ```
+如果超类没有构造函数可以直接添加
+```
+class Point {
+  num x;
+  num y;
+}
+class Point1 extends Point {
+  num x;
+  num y;
+
+  Point1(this.x, this.y);//可以在子类中直加
+}
+```
+如果超类中有构造函数，子类不能重载，必需使用super
+```
+class Point {
+  num x;
+  num y;
+  Point(this.x, this.y);
+}
+
+class Point1 extends Point {
+  num x;
+  num y;
+
+  Point1(this.x, this.y) : super(x, y) {}//必须使用super
+}
+```
 重定向构造函数
 ```
 class Point { 
