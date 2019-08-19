@@ -35,8 +35,81 @@ class Point {
   num x;
   num y;
 
-  // 在构造函数体执行之前设置实例变量的语法
+  // this.x 相当于赋值 ,而dar里面建议这样写
   Point(this.x, this.y);
+}
+```
+命名构造函数
+```
+class Point { 
+  num x; 
+  num y; 
+
+  Point(this.x, this.y); 
+
+  //命名构造函数
+  Point.fromJson(Map json) { 
+    x = json['x']; 
+    y = json['y']; 
+  } 
+}
+
+```
+重定向构造函数
+```
+class Point { 
+  num x; 
+  num y; 
+
+  Point(this.x, this.y); 
+
+  //重定向构造函数，使用冒号调用其他构造函数 , this相当于自己的构造函数， 把0赋值给y
+  Point.alongXAxis(num x) : this(x, 0);
+}
+```
+调用超类构造函数
+```
+void main() {
+  Child child = Child.fromJson(10, 10); //调用的是第二个构造函数
+  child = Child(10, 10);//调用的是第一个构造函数
+  child.xx();
+}
+
+class Parent {
+  int x;
+  int y;
+
+  //父类命名构造函数不会传递
+  Parent.fromJson(x, y)
+      : x = x,
+        y = y {
+    print('父类命名构造函数');
+  }
+}
+
+class Child extends Parent {
+  int x;
+  int y;
+
+  //若超类没有默认构造函数， 需要手动调用超类其他构造函数
+  Child(x, y) : super.fromJson(x, y) {
+    //调用父类构造函数的参数无法访问 this
+    this.x = x;
+    this.y = y;
+    print('子类构造函数');
+  }
+
+  //在构造函数的初始化列表中使用super()，需要把它放到最后 ;冒号后面的赋值操作
+  Child.fromJson(x, y)
+      : x = x,
+        y = y,
+        super.fromJson(x, y) {
+    print('子类命名构造函数');
+  }
+
+  xx() {
+    print('x=$x , y=$y');
+  }
 }
 ```
 ## 3.Dart可选参数的写法
