@@ -39,3 +39,32 @@ class Point {
   Point(this.x, this.y);
 }
 ```
+## 2.Dart可选参数的写法
+```
+//不在中括号和大括号里面的是必须要填的
+void main() {
+  getPart1("大括号", name: "小米", pwd: "123");
+  getPart1("大括号", pwd: "123");
+  getPart2("中括号", "华为", "123");
+  getPart2("中括号", "华为");
+  getDeful("默认的");
+}
+/**
+* 1,带有大括号的:传值比较明确.也可以不填，值为null
+*/
+getPart1(var a, {String name, String pwd}) {
+  print("a=$a name=$name pwd=$pwd");
+}
+/**
+ * ,2 中括号的:默认按照顺序,也可以不填，值为null
+ */
+getPart2(var a, [String name, String pwd]) {
+  print("a=$a name=$name pwd=$pwd");
+}
+/**
+ * 3,默认参数值
+ */
+getDeful(String a, {String name="小明", String pwd="123"} ){
+  print("a=$a name=$name pwd=$pwd");
+}
+```
