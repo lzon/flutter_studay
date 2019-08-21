@@ -87,7 +87,7 @@ class Point1 extends Point {
   num x;
   num y;
 
-  Point1(this.x, this.y) : super(x, y) {}//必须使用super
+  Point1(this.x, this.y) : super(x, y) {}//必须使用super，super后的x是把Point1的x的值传给父类x
 }
 ```
 重定向构造函数
